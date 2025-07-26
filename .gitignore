@@ -1,0 +1,23 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node
+node_modules/
+dist/
+
+# Environment
+.env*
+!.env.example
+
+# Public data
+public/posts.json
+public/posts_classified.json
+public/posts_backup_*.json
+
+# Cookies (sensitive)
+cookies.json
+
+# Personal notes
+claude.md
