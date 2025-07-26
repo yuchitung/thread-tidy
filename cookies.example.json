@@ -1,0 +1,42 @@
+[
+  {
+    "name": "csrftoken",
+    "value": "your_csrf_token_here",
+    "domain": ".threads.com",
+    "path": "/",
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "mid",
+    "value": "your_machine_id_here",
+    "domain": ".threads.com",
+    "path": "/",
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "ds_user_id",
+    "value": "your_user_id_here",
+    "domain": ".threads.com",
+    "path": "/",
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "dpr",
+    "value": "1",
+    "domain": ".threads.com",
+    "path": "/",
+    "httpOnly": false,
+    "secure": true
+  },
+  {
+    "name": "sessionid",
+    "value": "your_session_id_here",
+    "domain": ".threads.com",
+    "path": "/",
+    "httpOnly": true,
+    "secure": true
+  }
+]
