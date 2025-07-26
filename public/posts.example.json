@@ -1,0 +1,18 @@
+[
+  {
+    "post_id": "abc123",
+    "url": "https://www.threads.net/post/abc123",
+    "author": {
+      "username": "myname",
+      "display_name": "My Name"
+    },
+    "content": "I tried a new ramen shop, it was great!",
+    "media": [
+      {"type": "image", "url": "https://..."}
+    ],
+    "timestamp": "2024-06-01T15:00:00Z",
+    "saved_at": "2024-06-05T10:20:00Z",
+    "categories": ["Food", "Travel"],
+    "keywords": ["ramen", "Taipei"]
+  }
+]
