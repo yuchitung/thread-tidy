@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  # Python data fetching and classification
+  python-scripts:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    container_name: thread-tidy-python
+    volumes:
+      # Mount public directory for data persistence
+      - ./public:/app/public
+      # Mount credentials (read-only)
+      - ./cookies.json:/app/cookies.json:ro
+      - ./.env:/app/.env:ro
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - PLAYWRIGHT_HEADLESS=true
+    # Uncomment to run both scripts on startup
+    # command: sh -c "python scripts/fetch_saved_posts.py && python scripts/classify.py"
+
+  # React frontend
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: thread-tidy-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      # Mount source for hot reload
+      - ./src:/app/src
+      - ./public:/app/public
+      - ./index.html:/app/index.html
+      # Prevent node_modules from being overwritten
+      - /app/node_modules
+    environment:
+      - VITE_HOST=0.0.0.0
+    depends_on:
+      - python-scripts

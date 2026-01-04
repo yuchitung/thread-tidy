@@ -74,6 +74,17 @@ npm run dev
 
 Frontend will start at http://localhost:3000
 
+### Using Docker
+
+```bash
+# Start all services
+docker-compose up
+
+# Or run scripts separately
+docker-compose run python-scripts python scripts/fetch_saved_posts.py
+docker-compose run python-scripts python scripts/classify.py
+```
+
 ## 📁 Project Structure
 
 ```
