@@ -1,0 +1,10 @@
+[project]
+name = "thread-tidy"
+version = "0.1.0"
+description = "Personal tool to fetch and classify Threads saved posts with AI"
+requires-python = ">=3.11"
+dependencies = [
+    "openai>=2.0.0",
+    "playwright>=1.48.0",
+    "python-dotenv>=1.0.1",
+]
