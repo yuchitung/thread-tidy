@@ -16,7 +16,8 @@ A personal tool for fetching, classifying, and browsing Threads saved posts. Aut
 ## 🛠️ Tech Stack
 
 ### Backend (Python)
-- **Python 3.11**
+- **Python >=3.11**
+- **uv** - Fast Python package manager
 - **Playwright** - Browser automation
 - **OpenAI SDK** - Post classification and keyword generation
 
@@ -32,17 +33,9 @@ A personal tool for fetching, classifying, and browsing Threads saved posts. Aut
 
 ## 📦 Installation & Setup
 
-### 1. Install Python Dependencies
-```bash
-pip install -r requirements.txt
-```
+### Prerequisites (Required for all methods)
 
-### 2. Install Node.js Dependencies
-```bash
-npm install
-```
-
-### 3. Setup Environment Variables
+#### 1. Setup Environment Variables
 Create `.env` file from example:
 ```bash
 cp .env.example .env
@@ -52,37 +45,121 @@ Then edit `.env` and add your OpenAI API key:
 OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-### 4. Prepare Threads Login Info
+#### 2. Prepare Threads Login Info
 Save Threads cookies to `cookies.json` (refer to `cookies.example.json`)
+
+---
+
+### Choose Installation Method
+
+#### Option 1: Using uv (Recommended)
+
+**1. Install uv**
+```bash
+# macOS/Linux
+brew install uv
+
+# or using curl
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+**2. Install Python Dependencies**
+```bash
+uv sync
+uv run playwright install chromium
+```
+
+**3. Install Node.js Dependencies**
+```bash
+npm install
+```
+
+#### Option 2: Using Docker
+
+**Requirements:** Ensure `.env` and `cookies.json` are ready (see Prerequisites above).
+
+```bash
+# One-command setup
+docker-compose up
+```
+
+Access frontend at http://localhost:5173
+
+#### Option 3: Traditional pip
+
+**1. Create virtual environment**
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+**2. Install dependencies**
+```bash
+pip install -e .
+playwright install chromium
+```
+
+**3. Install Node.js Dependencies**
+```bash
+npm install
+```
 
 ## 🚀 Usage
 
-### Step 1: Fetch Saved Posts
+> **Prerequisites:** Complete the Installation & Setup section above first.
+
+### Using uv (Recommended)
+
+**Step 1: Fetch Saved Posts**
 ```bash
-python scripts/fetch_saved_posts.py
+uv run python scripts/fetch_saved_posts.py
 ```
 
-### Step 2: Classify Posts
+**Step 2: Classify Posts**
 ```bash
-python scripts/classify.py
+uv run python scripts/classify.py
 ```
 
-### Step 3: Start Frontend
+**Step 3: Start Frontend**
 ```bash
 npm run dev
 ```
 
-Frontend will start at http://localhost:3000
+Frontend will start at http://localhost:5173
 
 ### Using Docker
 
 ```bash
-# Start all services
+# Start all services together
 docker-compose up
 
 # Or run scripts separately
 docker-compose run python-scripts python scripts/fetch_saved_posts.py
 docker-compose run python-scripts python scripts/classify.py
+
+# Start frontend only
+docker-compose up frontend
+```
+
+Frontend will start at http://localhost:5173
+
+### Using Traditional pip
+
+Activate virtual environment first:
+```bash
+source .venv/bin/activate
+```
+
+Then run:
+```bash
+# Fetch posts
+python scripts/fetch_saved_posts.py
+
+# Classify posts
+python scripts/classify.py
+
+# Start frontend
+npm run dev
 ```
 
 ## 📁 Project Structure
@@ -103,8 +180,12 @@ thread-tidy/
 │   └── posts.example.json       # Data format example
 ├── cookies.json                 # Threads login info (gitignored)
 ├── cookies.example.json         # Login info example
+├── pyproject.toml               # Python project config (PEP 621)
+├── uv.lock                      # Python dependency lock file
 ├── package.json                 # Node.js dependencies
-├── requirements.txt             # Python dependencies
+├── Dockerfile.python            # Docker config for Python scripts
+├── Dockerfile.frontend          # Docker config for React frontend
+├── docker-compose.yml           # Docker orchestration
 ├── vite.config.ts              # Vite configuration
 ├── tailwind.config.js          # Tailwind configuration
 └── README.md                    # Project documentation
