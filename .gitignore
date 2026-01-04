@@ -1,11 +1,22 @@
 # Python
 venv/
+.venv/
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
 
 # Node
 node_modules/
 dist/
+
+# OS
+.DS_Store
+Thumbs.db
 
 # Environment
 .env*
