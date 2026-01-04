@@ -6,7 +6,7 @@ export default defineConfig({
   publicDir: 'public',
   server: {
     host: 'localhost',
-    port: 3000,
+    port: 5173,
     strictPort: false,
     open: true
   },
